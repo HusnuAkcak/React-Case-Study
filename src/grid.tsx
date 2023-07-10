@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { forwardRef } from 'react';
 import { SubmitRecord } from "./submitRecord";
 
-const Grid = (props : {source: Array<SubmitRecord>} )=> {
-
+const Grid = forwardRef(function Grid(props: { source: Array<SubmitRecord>}, ref: React.MutableRefObject<any>) {
     return (
         <React.Fragment>
-            <table id="submit-record-table">
+            <table ref={ref} id="submit-record-table">
                 <tbody>{
                     props.source.map((item:SubmitRecord) => {
                         return convertSubmitRecordToTableRow(item);
@@ -15,7 +15,7 @@ const Grid = (props : {source: Array<SubmitRecord>} )=> {
             
         </React.Fragment>
     )
-};
+})
 
 function convertSubmitRecordToTableRow(item:SubmitRecord){
     return (
