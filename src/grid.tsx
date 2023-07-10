@@ -18,11 +18,14 @@ const Grid = (props : {source: Array<SubmitRecord>} )=> {
 };
 
 function convertSubmitRecordToTableRow(item:SubmitRecord){
-    return <tr className = {item.isBackgroundColorRed ? 'red-background' : ''}>
+    return (
+    <tr key={item.name + item.mailReceivedDate} 
+        className = {item.isBackgroundColorRed ? 'red-background' : ''}>
         <td>{item.name}</td>
         <td>{item.mailReceivedDate}</td>
         <td>{item.solutionSentDate}</td>
     </tr>
+    )
 }
 
 export default Grid;
