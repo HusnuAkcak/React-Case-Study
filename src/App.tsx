@@ -69,6 +69,7 @@ function control(gridRef:React.MutableRefObject<HTMLTableElement>, today: Date, 
   
   for(let row of rows as HTMLCollectionOf<HTMLTableRowElement>){
     
+    const name = row.cells[0].textContent;
     const mailReceivedDate = row.cells[1].textContent;
     const submitDate = (''!=row.cells[2].textContent) ? row.cells[2].textContent : today;  
     const diff = dateDiffInDays(new Date(mailReceivedDate), new Date(submitDate));
@@ -76,6 +77,10 @@ function control(gridRef:React.MutableRefObject<HTMLTableElement>, today: Date, 
        (diff <= limit && '' != row.className)
       ){
         ++numberOfErrors;
+        console.log("Wrong row color: name"+ name +" | received: "+mailReceivedDate+" | submit: "+ submitDate+" | day diff: "+diff )
+      }
+      else {
+        console.log("Correct row color: name"+ name +" | received: "+mailReceivedDate+" | submit: "+ submitDate+" | day diff: "+diff )
       }
   }
   return numberOfErrors;
